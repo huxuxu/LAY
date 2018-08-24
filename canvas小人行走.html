@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<canvas width="600" height="600" id="canvas">
+    您的浏览器不支持canvas
+</canvas>
+<input type="button" id="xia" value="下">
+<input type="button" id="shang" value="上">
+<input type="button" id="zuo" value="左">
+<input type="button" id="you" value="右">
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    function Zhu() {
+        this.canvas = $('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.s = $('shang');
+        this.x = $('xia');
+        this.z = $('zuo');
+        this.y = $('you');
+        this.img = new Image();   
+        this.img.src = 'image/one.png';
+        this.sum = 0;
+        this.kz = 0;
+        this.init();
+        this.bin();
+    }
+
+    Zhu.prototype.init = function () {
+        var self = this;
+        this.img.onload = function () {
+
+            setInterval(function () {
+
+                self.sum++;
+                self.ctx.clearRect(0,0,self.canvas.width,self.canvas.height);
+                //绘制图片
+                if (self.sum >= 8) {
+                    self.sum=0;
+                }
+                self.ctx.drawImage(self.img,self.sum*80,self.kz,80,109,250,250,97,97);
+
+            },200)
+        }
+    }
+
+    Zhu.prototype.bin = function () {
+        var self = this;
+        this.s.onclick = function () {
+            self.kz = 0;
+        }
+        this.x.onclick = function () {
+            self.kz = 108*3;
+        }
+        this.z.onclick = function () {
+            self.kz = 108;
+        }
+        this.y.onclick = function () {
+            self.kz = 108*2;
+        }
+    }
+
+    new Zhu();
+
+
+</script>
+</body>
+</html>
