@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid red
+        }
+    </style>
+</head>
+<body>
+    <canvas id="box" width="600" height="450">
+        您的浏览器不支持canvas！！
+    </canvas>
+    <script>
+        var canvas = document.getElementById("box");
+        var ctx = canvas.getContext("2d");
+        
+        var r = 50;
+        var x = 200;
+        var y = 200;
+        var num = 0;
+        setInterval(function() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);           
+            num ++;
+            ctx.beginPath();
+            var a = Math.sin(num*Math.PI/180)*r;
+            var b = Math.cos(num*Math.PI/180)*r;
+            ctx.arc(x+a,y+b,r,0,2*Math.PI);
+            ctx.fillStyle = "yellowgreen";
+            ctx.fill();
+            ctx.closePath();
+            
+        },10);
+        
+        
+    </script>
+</body>
+</html>
