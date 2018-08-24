@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 300px;
+            top: 300px;
+            background-color: red;
+        }
+        .sub {
+            border: 1px solid green;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById("box");
+        // 圆周半径
+        var r = 100;
+        // 起点坐标
+        var x = 450;
+        var y = 450;
+        var num = 0;
+        setInterval(function() {
+            num ++;
+            // 圆周上某一点对应的坐标
+            var a = Math.sin(num*Math.PI/180)*r;
+            var b = Math.cos(num*Math.PI/180)*r;
+            box.style.left = x + b + "px";
+            box.style.top = y + a + "px";
+            var sub = document.createElement("div");
+            sub.className = "sub";
+            document.body.appendChild (sub);
+            sub.style.left = x + b + "px";
+            sub.style.top = y + a + "px";
+        },20);
+    </script>
+</body>
+</html>
